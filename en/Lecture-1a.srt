@@ -415,7 +415,7 @@ or Sumerian, or Babylonian or whatever.
 
 91
 00:06:18,844 --> 00:06:23,275
-We're gonna control our spirits
+We're gonna conjure our spirits
 in a magical language called LISP,
 
 92
@@ -682,7 +682,7 @@ that we're fitting things together.
 
 147
 00:09:50,356 --> 00:09:54,099
-So there's... We don't have to worry
+Right? So there's... We don't have to worry
 about tolerance and that means
 
 148
@@ -722,7 +722,7 @@ of physics and noise and approximation.
 
 155
 00:10:21,277 --> 00:10:23,324
-The constraints imposed...
+the constraints imposed...
 
 156
 00:10:24,012 --> 00:10:28,107
@@ -746,7 +746,7 @@ that are imposed by reality.
 160
 00:10:41,593 --> 00:10:45,766
 OK. Well, what are...
-some of these techniques?
+What are some of these techniques?
 
 161
 00:10:46,343 --> 00:10:49,097
@@ -1124,12 +1124,11 @@ like finding square root.
 
 240
 00:17:21,975 --> 00:17:25,943
-And might take as their inputs functions
+And might take as their inputs functions like
 
 241
 00:17:26,415 --> 00:17:29,299
-like Y goes
-to the average of Y and X over Y.
+Y goes to the average of Y and X over Y.
 
 242
 00:17:29,782 --> 00:17:32,608
@@ -1537,7 +1536,7 @@ conventional interfaces.
 
 328
 00:23:16,874 --> 00:23:18,642
-Agreed upon ways
+Agreed-upon ways
 
 329
 00:23:19,041 --> 00:23:22,035
@@ -1767,11 +1766,11 @@ By talking, abstracting by talking about
 
 378
 00:26:23,945 --> 00:26:26,562
-how you construct new languages
+how you construct new languages.
 
 379
 00:26:29,830 --> 00:26:31,901
-as I said we're gonna start out
+As I said we're gonna start out
 
 380
 00:26:32,420 --> 00:26:36,321
@@ -1784,7 +1783,7 @@ this apply/eval loop.
 
 382
 00:26:40,650 --> 00:26:41,840
-and build LISP.
+And build LISP.
 
 383
 00:26:42,224 --> 00:26:44,021
@@ -2271,12 +2270,12 @@ it would mean something else.
 
 488
 00:34:35,249 --> 00:34:36,950
-In fact, the way to think about this
+In fact, the way to think about this is:
 
 489
 00:34:37,251 --> 00:34:40,097
-is really what I'm doing
-when I write something like this
+Really what I'm doing,
+when I write something like this,
 
 490
 00:34:40,439 --> 00:34:41,974
@@ -2306,8 +2305,8 @@ that has a star, and a 5, and a 6.
 
 496
 00:35:03,685 --> 00:35:06,487
-And the way to think of that
-is really what's going on
+And the way to think of that is:
+really, what's going on
 
 497
 00:35:07,237 --> 00:35:12,917
@@ -2479,11 +2478,11 @@ what I'm gonna do is I'm gonna indent so
 
 533
 00:37:37,117 --> 00:37:39,630
-that the operands are written vertically
+that the operands are written vertically.
 
 534
 00:37:40,010 --> 00:37:41,869
-Let's the sum of that and the product
+It's the sum of that and the product
 
 535
 00:37:42,287 --> 00:37:49,335
@@ -2751,7 +2750,7 @@ that for example I could multiply 5 by 5
 
 594
 00:42:17,830 --> 00:42:20,624
-Or I'd like to be able
+Alright, I'd like to be able
 to name the general idea
 
 595
@@ -2900,7 +2899,7 @@ more closely on a slide.
 627
 00:45:03,925 --> 00:45:11,267
 The way I read that definition is to say
-I define square to be make a procedure
+I define square to be: make a procedure
 
 628
 00:45:12,602 --> 00:45:13,772
@@ -2951,7 +2950,7 @@ And there's a word for that:
 
 638
 00:45:50,650 --> 00:45:53,724
-Syntactic sugar.
+"Syntactic sugar"
 
 639
 00:45:54,416 --> 00:45:56,888
@@ -3019,7 +3018,7 @@ something square and having done that,
 653
 00:46:58,473 --> 00:47:04,230
 I can ask LISP
-for what's the square of 1001.
+for what's the square of 1001?
 
 654
 00:47:05,016 --> 00:47:09,559
@@ -3099,7 +3098,7 @@ OK. Let's look at...
 
 671
 00:48:39,295 --> 00:48:41,305
-at two more examples of defining.
+at two more examples of define.
 
 672
 00:48:44,714 --> 00:48:46,767
@@ -3160,7 +3159,7 @@ The person defining mean-square
 
 685
 00:49:50,155 --> 00:49:52,433
-doesn't have to know at this point
+doesn't have to know, at this point,
 
 686
 00:49:52,768 --> 00:49:55,788
@@ -3212,7 +3211,7 @@ if I come here on the computer screen
 
 696
 00:50:29,528 --> 00:50:32,756
-and say what is the value of plus?
+and say what is the value of + ?
 
 697
 00:50:34,176 --> 00:50:35,836
@@ -3358,7 +3357,7 @@ This something is a conditional clause.
 729
 00:52:34,130 --> 00:52:41,602
 And it has two parts.
-This part here is a predicate,..
+This part here is a predicate,...
 
 730
 00:52:44,112 --> 00:52:45,719
@@ -3381,7 +3380,7 @@ that returns either true or false.
 734
 00:52:53,478 --> 00:52:56,594
 And you see LISP has
-a primitive procedure less than,
+a primitive procedure 'less than',
 
 735
 00:52:57,225 --> 00:52:59,587
@@ -3530,7 +3529,7 @@ and it doesn't make any difference.
 766
 00:54:49,157 --> 00:54:51,032
 Person implementing
-a LISP system will pick one
+a LISP system will pick one,
 
 767
 00:54:51,333 --> 00:54:52,773
@@ -3583,7 +3582,7 @@ for defining procedures.
 
 778
 00:55:33,470 --> 00:55:40,727
-But again what it really means is I'm
+But again, what it really means is I'm
 defining this symbol square to be that.
 
 779
@@ -3642,7 +3641,7 @@ like Fortran or Basic or whatever,
 
 790
 00:56:49,555 --> 00:56:51,241
-well, essentially any other language.
+or essentially any other language.
 
 791
 00:56:52,034 --> 00:56:54,681
@@ -3746,7 +3745,7 @@ If you pick a G that's too large...
 
 812
 00:58:16,192 --> 00:58:18,889
-if the G is larger than the square
+if your G is larger than the square
 root of X then X/G will be smaller
 
 813
@@ -3781,7 +3780,7 @@ So if you keep doing this enough
 819
 00:58:39,350 --> 00:58:42,657
 you'll eventually get as close
-as you want and there's another fact
+as you want. And there's another fact
 
 820
 00:58:42,958 --> 00:58:47,635
@@ -3825,7 +3824,7 @@ to try a guess
 
 829
 00:59:23,227 --> 00:59:25,296
-for the square root of X...
+for the square root of X.
 
 830
 00:59:26,152 --> 00:59:33,059
@@ -4221,7 +4220,7 @@ So, the process makes perfect sense.
 915
 01:05:59,353 --> 01:06:06,366
 This by the way
-is called a recursive definition
+is called a recursive definition.
 
 916
 01:06:13,928 --> 01:06:18,623
@@ -4275,12 +4274,12 @@ good-enough and try inside square root.
 
 927
 01:06:56,639 --> 01:07:00,669
-So in fact what I've done
-is I've built the square root box.
+So in effect what I've done
+is I've built a square root box.
 
 928
 01:07:01,746 --> 01:07:07,769
-I've built a box that's this square root
+I've built a box. That's this square root
 procedure that someone can use.
 
 929
@@ -4298,8 +4297,8 @@ and good-enough, and improve.
 
 932
 01:07:26,845 --> 01:07:30,583
-So they're hidden inside this box
-and the reason for doing that is that
+So they're hidden inside this box.
+And the reason for doing that is that
 
 933
 01:07:31,104 --> 01:07:33,000
@@ -4572,8 +4571,8 @@ except for you really got a difference.
 
 991
 01:11:15,147 --> 01:11:18,615
-the difference would be in the old one,
-let me be a little bit clearer here...
+the difference would be in the old one...
+Let me be a little bit clearer here...
 
 992
 01:11:20,089 --> 01:11:23,748
@@ -4589,7 +4588,7 @@ I wrote define...
 
 995
 01:11:30,604 --> 01:11:37,818
-D to be the product of 5 and 5.
+(D) to be the product of 5 and 5.
 
 996
 01:11:39,695 --> 01:11:41,413
@@ -4667,5 +4666,5 @@ OK.
 1012
 01:12:47,213 --> 01:12:52,857
 Subtitles created by Sergey Khenkin
-http://www.sicptitles.org
+http://www.sicptitles.org, http://code.google.com/p/sicp-subtitles
 
