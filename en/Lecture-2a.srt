@@ -1,0 +1,3638 @@
+1
+00:00:01,001 --> 00:00:4,000
+SICP Lectures-2a Subtitles
+
+(http://www.archive.org/download/halmit2a/Lecture-2a.mpg)
+
+2
+00:00:4,001 --> 00:00:6,400
+Copyright (C)  2010  Toni Moll.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+3
+00:00:25,523 --> 00:00:27,273
+Well, yesterday was easy.
+
+4
+00:00:27,778 --> 00:00:31,388
+You learned all of
+the rules of programming in lisp,
+
+5
+00:00:32,936 --> 00:00:34,266
+Almost all of them,
+
+6
+00:00:34,744 --> 00:00:38,992
+And so at this point
+you're now certified programmers
+you could say.
+
+7
+00:00:40,051 --> 00:00:42,974
+However,
+I suppose what we did is, ...
+
+8
+00:00:47,667 --> 00:00:50,826
+... we sort of got you
+a little bit of into an easy state.
+
+9
+00:00:51,756 --> 00:00:53,722
+Do you still believe
+it's possible, you know, ...
+
+10
+00:00:53,710 --> 00:00:58,193
+that this might be
+programming in basic or pascal
+with just a funny syntax.
+
+11
+00:00:59,388 --> 00:01:01,233
+Today, that illusion ...
+
+12
+00:01:01,508 --> 00:01:04,505
+... or, you can
+no longer support that belief.
+
+13
+00:01:05,216 --> 00:01:07,371
+What we're going to do today
+is to completely smash that.
+
+14
+00:01:08,518 --> 00:01:10,087
+So, let's start out, ...
+
+15
+00:01:11,272 --> 00:01:15,467
+... ah, by writing a few programs
+on the blackboard that have a
+lot in common with each other.
+
+16
+00:01:16,191 --> 00:01:18,371
+What we're gonna do,
+is try
+to make some abstractions ...
+
+17
+00:01:19,386 --> 00:01:23,121
+... that are not ones
+that are easy to make
+in most languages.
+
+18
+00:01:24,304 --> 00:01:27,577
+To start with some simple ones
+that you can make
+in most languages ...
+
+19
+00:01:27,578 --> 00:01:34,455
+Supposing I want to write
+the mathematical expression
+which adds up a bunch of integers.
+
+20
+00:01:34,456 --> 00:01:41,576
+So if I want to write down,
+lets say, the sum
+from i=a to b of i.
+
+21
+00:01:41,611 --> 00:01:44,598
+Now you know that's an easy thing
+to compute a closed form for, ...
+
+22
+00:01:44,599 --> 00:01:49,156
+... and I'm not interested in that,
+but I'm gonna write a program
+that adds up those integers.
+
+23
+00:01:49,157 --> 00:01:51,188
+That's rather easy to do.
+
+24
+00:01:51,189 --> 00:02:05,615
+To say,
+define the sum of the integers
+from a to b ...
+
+25
+00:02:06,702 --> 00:02:10,492
+... to be, well,
+it's the following two possibilities:
+
+26
+00:02:11,502 --> 00:02:18,373
+If a is greater than b,
+then there's nothing to be done,
+and the answer is zero.
+
+27
+00:02:18,374 --> 00:02:21,279
+This is how you're going to
+have to think recursively.
+
+28
+00:02:22,758 --> 00:02:26,140
+If I have an easy case
+that I know the answer to,
+just write it down.
+
+29
+00:02:26,291 --> 00:02:29,992
+Otherwise I'm going to try
+to reduce this problem
+to a simpler problem, ...
+
+30
+00:02:29,993 --> 00:02:34,657
+... and maybe in this case
+I'm gonna make a subproblem
+with a simpler problem and then
+do something to the result.
+
+31
+00:02:34,658 --> 00:02:38,352
+So the easiest way to do this:
+
+32
+00:02:38,353 --> 00:02:44,677
+You say that
+I'm going to add the index,
+which in this case is a, ...
+
+33
+00:02:44,678 --> 00:02:58,156
+... to the result of
+adding up
+the integers from a+1 to b.
+
+34
+00:03:01,366 --> 00:03:04,964
+Now at this point,
+you should have no trouble
+looking at such a definition.
+
+35
+00:03:04,965 --> 00:03:09,810
+Indeed, coming
+up with such a thing might
+be a little hard in synthesis, ...
+
+36
+00:03:09,811 --> 00:03:12,612
+... but being able to read it,
+at this point, should be easy.
+
+37
+00:03:12,613 --> 00:03:15,063
+What it says to you is:
+
+38
+00:03:15,064 --> 00:03:18,893
+Well, here is the
+subproblem I'm going to solve:
+
+39
+00:03:18,894 --> 00:03:21,608
+I'm going to try
+to add up the integers, ...
+
+40
+00:03:21,952 --> 00:03:25,866
+... one fewer integer than
+I added up
+for the whole problem, ...
+
+41
+00:03:25,867 --> 00:03:28,246
+I'm adding up one fewer one ...
+
+42
+00:03:28,835 --> 00:03:30,759
+... and that's the problem,
+
+43
+00:03:30,959 --> 00:03:33,135
+once I've solved it,
+i'm gonna add a to that ...
+
+44
+00:03:33,122 --> 00:03:36,225
+... and that will be
+the answer to this problem.
+
+45
+00:03:38,571 --> 00:03:40,487
+And in the simplest case
+I don't have to do any work.
+
+46
+00:03:41,755 --> 00:03:45,883
+Now I'm also going to write down
+another simple one just like this,
+
+47
+00:03:45,685 --> 00:03:53,534
+which is the
+mathematical expression of
+sum of the squares
+from i=a to b.
+
+48
+00:03:55,228 --> 00:03:58,236
+And again a very simple program.
+
+49
+00:04:10,572 --> 00:04:13,094
+And
+indeed it starts the same way.
+
+50
+00:04:15,077 --> 00:04:20,781
+If a is greater than b,
+then the answer is zero.
+
+51
+00:04:21,469 --> 00:04:22,750
+And of course we're
+beginning to see ...
+
+52
+00:04:23,725 --> 00:04:26,014
+... that
+there's something wrong with me
+writing this down again.
+
+53
+00:04:27,278 --> 00:04:29,093
+Okay, it's the same program.
+
+54
+00:04:29,319 --> 00:04:37,006
+It's the sum of the square of a ...
+
+55
+00:04:37,816 --> 00:04:50,204
+... and the sum of the squares of
+the increment and b.
+
+56
+00:04:50,922 --> 00:04:54,934
+Now if you
+look at these things, these
+programs are almost identical.
+
+57
+00:04:56,446 --> 00:04:59,542
+Okay, there's not much to
+distinguish them.
+
+58
+00:05:00,341 --> 00:05:02,638
+They have the same
+first clause in the conditional, ...
+
+59
+00:05:03,085 --> 00:05:04,517
+... and the same predicate
+and the same consequent, ...
+
+60
+00:05:05,550 --> 00:05:07,974
+... and the alternatives
+are very similar too.
+
+61
+00:05:09,236 --> 00:05:11,260
+They only differ by the fact that,
+
+62
+00:05:11,995 --> 00:05:16,828
+whereas here I have A,
+here I have the square of A.
+
+63
+00:05:17,691 --> 00:05:21,868
+The only other difference, but
+this one is sort of unessential, ...
+
+64
+00:05:22,084 --> 00:05:24,052
+... is that
+the name of this procedure
+is SUM-INT, ...
+
+65
+00:05:24,517 --> 00:05:26,844
+... whereas
+the name of this procedure
+is SUM-SQUARE.
+
+66
+00:05:27,668 --> 00:05:31,620
+so the things that vary
+between these two are very small.
+
+67
+00:05:33,132 --> 00:05:37,076
+Now, whenever you see yourself
+writing the same thing down
+more than once ...
+
+68
+00:05:37,333 --> 00:05:39,212
+... there is something wrong,
+and you shouldn't be doing it.
+
+69
+00:05:40,107 --> 00:05:44,516
+And the reason is not because
+it's a waste of time
+to write something down
+more than once.
+
+70
+00:05:45,164 --> 00:05:49,389
+It's because there's some idea
+here, a very simple idea, ...
+
+71
+00:05:50,188 --> 00:05:53,619
+... which has to do with
+the sigma notation.
+
+72
+00:05:53,944 --> 00:05:59,957
+Right, it's this much
+not depending upon
+what it is I'm adding up.
+
+73
+00:06:01,436 --> 00:06:05,981
+And I would like to be able to
+have always, whenever trying
+to make complicated systems
+and to understand them ...
+
+74
+00:06:06,430 --> 00:06:09,765
+... it's crucial to divide the things
+up and do as many pieces
+as I can, ...
+
+75
+00:06:09,957 --> 00:06:11,245
+... each of which
+I understand separately.
+
+76
+00:06:11,990 --> 00:06:14,798
+I would like to understand
+the way of adding things up ...
+
+77
+00:06:15,037 --> 00:06:16,812
+... independently of
+what it is I'm adding up.
+
+78
+00:06:17,293 --> 00:06:21,007
+So that I can use that,
+having debugged it once.
+
+79
+00:06:21,486 --> 00:06:23,198
+Having understood it once.
+
+80
+00:06:23,774 --> 00:06:28,095
+And having been able to share
+that,
+among many different uses of it.
+
+81
+00:06:29,223 --> 00:06:30,375
+Here we have another example.
+
+82
+00:06:31,174 --> 00:06:39,461
+This is Leibnitz's formula
+for finding pi over 8.
+
+83
+00:06:40,269 --> 00:06:43,845
+Let's say,
+a funny ugly mess it's what it is.
+
+84
+00:06:44,125 --> 00:06:54,460
+Something like,
+1/(1*3)+
+1/(5*7)+
+1/(9*11)+
+... .
+
+85
+00:06:54,822 --> 00:06:57,605
+And for some reason,
+things like this tend to ...
+
+86
+00:06:58,278 --> 00:07:01,925
+... tend to have
+interesting values like pi/8.
+
+87
+00:07:02,173 --> 00:07:05,885
+But, what do we see here?
+It's the same program,
+
+88
+00:07:06,261 --> 00:07:08,469
+or almost the same program.
+It's a sum.
+
+89
+00:07:08,910 --> 00:07:11,287
+Okay, so,
+we're seeing the sigma notation,
+
+90
+00:07:11,525 --> 00:07:16,862
+although over here, we're dealing
+with incrementing by 4, ...
+
+91
+00:07:17,119 --> 00:07:18,206
+... that's a
+slightly different problem, ...
+
+92
+00:07:18,678 --> 00:07:22,589
+... which means that over here
+I have to change a by 4,
+
+93
+00:07:22,797 --> 00:07:24,125
+as you see right over here.
+
+94
+00:07:24,940 --> 00:07:26,598
+It's not by one.
+
+95
+00:07:28,084 --> 00:07:29,013
+The other thing of course, ...
+
+96
+00:07:29,454 --> 00:07:32,157
+... is that the thing that is
+represented by square ...
+
+97
+00:07:32,589 --> 00:07:34,278
+... in the previous sum of squares, ...
+
+98
+00:07:34,477 --> 00:07:35,686
+... or A when
+I'm adding up the integers, ...
+
+99
+00:07:36,118 --> 00:07:38,605
+... well,
+here I have a different thing
+I'm adding up, a different term ...
+
+100
+00:07:38,933 --> 00:07:43,328
+which is 1 over a, 1 over a,
+1 over a times a plus two.
+
+101
+00:07:43,617 --> 00:07:46,413
+But the rest of this program
+is identical.
+
+102
+00:07:48,148 --> 00:07:51,252
+Well, anytime we have
+a bunch of things like this
+that are identical, ...
+
+103
+00:07:51,686 --> 00:07:54,797
+... we're gonna have to come up
+with some sort of abstraction
+to cover them.
+
+104
+00:07:55,941 --> 00:07:58,413
+If you think about this
+what you've learned so far ...
+
+105
+00:07:59,093 --> 00:08:05,542
+... is the rules of some language:
+some primitives,
+some means of combination,
+almost all of them, ...
+
+106
+00:08:05,804 --> 00:08:08,166
+... the means of abstraction,
+almost all of them, ...
+
+107
+00:08:09,981 --> 00:08:12,206
+... but what you haven't learned is
+common patterns of usage.
+
+108
+00:08:13,124 --> 00:08:15,007
+Now most of the time you learn
+idioms when learning a language.
+
+109
+00:08:14,996 --> 00:08:20,789
+There's a common pattern,
+that means things,
+that are useful to know,
+like a flash.
+
+110
+00:08:21,125 --> 00:08:23,741
+And if you build up
+a great number of them ...
+If you're a fortran programmer,
+
+111
+00:08:24,093 --> 00:08:28,148
+of course
+everybody knows how to ...
+ah, what do you do ...?
+
+112
+00:08:28,413 --> 00:08:31,045
+... for example, to get an integer
+which is
+the biggest integer in something.
+
+113
+00:08:31,269 --> 00:08:32,397
+Okay, it's a classic thing.
+
+114
+00:08:32,417 --> 00:08:34,130
+Every fortran programmer knows
+how to do that.
+
+115
+00:08:34,167 --> 00:08:37,198
+And if you don't know that
+you're a real hard worker,
+'cause it takes a long time
+to think it out.
+
+116
+00:08:37,981 --> 00:08:41,988
+However,
+one of the things you can do
+in this language
+that we're showing you, ...
+
+117
+00:08:42,236 --> 00:08:43,883
+... is not only that you're knowing
+something like that, ...
+
+118
+00:08:44,045 --> 00:08:46,315
+... but you give
+the knowledge of that
+a name.
+
+119
+00:08:47,244 --> 00:08:50,882
+And it's so that's what
+we're gonna be going after
+right now.
+
+120
+00:08:53,204 --> 00:08:56,180
+Okay, well let's see what
+these things have in common.
+
+121
+00:08:57,705 --> 00:08:59,604
+Okay, right over here, ...
+
+122
+00:09:00,299 --> 00:09:03,060
+... we have
+what appears to be
+a general pattern, ...
+
+123
+00:09:04,211 --> 00:09:07,395
+... a general pattern
+which covers all of the cases
+we've seen so far.
+
+124
+00:09:08,669 --> 00:09:13,484
+There is, ...
+some procedure
+which is being defined, ...
+
+125
+00:09:14,643 --> 00:09:18,675
+... it has two arguments,
+which are a lower bound
+and an upper bound.
+
+126
+00:09:19,683 --> 00:09:23,268
+The lower bound is tested to be
+greater than the upper bound, ...
+
+127
+00:09:23,515 --> 00:09:27,400
+... and if it is greater,
+then the result is zero.
+
+128
+00:09:27,632 --> 00:09:33,672
+Otherwise we're going to
+do something to the lower bound,
+which is the index
+of the computation, ...
+
+129
+00:09:34,391 --> 00:09:40,773
+... and add that result
+to the result of calling the
+procedure recursively on ...
+
+130
+00:09:41,341 --> 00:09:47,519
+... the lower bound incremented
+by some next operation, ...
+
+131
+00:09:47,718 --> 00:09:50,136
+... with the same upper bound as I had before.
+
+132
+00:09:53,387 --> 00:09:56,907
+So this is a general pattern.
+
+133
+00:09:57,714 --> 00:10:01,395
+And what I'd like to do, is be able
+to name this general pattern a bit.
+
+134
+00:10:03,251 --> 00:10:04,322
+Well that's sort of easy, ...
+
+135
+00:10:04,931 --> 00:10:07,579
+... because one of the
+things I'm going to do right now, ...
+
+136
+00:10:07,835 --> 00:10:10,066
+... is ...
+there's nothing special
+about numbers.
+
+137
+00:10:10,858 --> 00:10:13,242
+Numbers are just one kind of data.
+
+138
+00:10:14,683 --> 00:10:21,003
+And it seems to me
+perfectly reasonable to give
+all sorts of names to
+all kinds of data, ...
+
+139
+00:10:21,291 --> 00:10:22,171
+... for example procedures.
+
+140
+00:10:23,316 --> 00:10:26,035
+And many languages allow you
+to have procedural arguments.
+
+141
+00:10:26,179 --> 00:10:28,523
+And right now we're gonna
+talk about procedural arguments.
+
+142
+00:10:28,762 --> 00:10:30,547
+It's very easy to deal with.
+
+143
+00:10:31,139 --> 00:10:34,554
+And shortly we'll do some
+remarkable things that are not
+like procedural arguments.
+
+144
+00:10:35,643 --> 00:10:42,690
+So here we'll define
+our sigma notation.
+
+145
+00:10:43,242 --> 00:11:01,288
+This is called SUM and it takes
+a TERM, and A, a NEXT-er,
+and B as arguments.
+so it takes four arguments.
+
+146
+00:11:01,896 --> 00:11:05,560
+There is nothing particularly
+special about me writing
+this in lower case.
+
+147
+00:11:06,399 --> 00:11:09,951
+I hope that it doesn't
+confuse you it's all
+upper-case right now.
+
+148
+00:11:10,239 --> 00:11:11,784
+The machine doesn't care.
+
+149
+00:11:14,424 --> 00:11:17,000
+But these two
+arguments are different -
+
+150
+00:11:17,185 --> 00:11:22,928
+These are not numbers, these
+are gonna be procedures for
+computing something
+given a number.
+
+151
+00:11:23,136 --> 00:11:25,887
+TERM will be a procedure, which,
+when given an index,
+
+152
+00:11:26,392 --> 00:11:29,408
+Will produce the value of
+the term for that index.
+
+153
+00:11:29,609 --> 00:11:32,920
+NEXT will, when given
+an index, produce the next index.
+
+154
+00:11:33,216 --> 00:11:35,192
+This will be for counting.
+
+155
+00:11:35,777 --> 00:11:36,400
+And it's just very simple.
+
+156
+00:11:38,760 --> 00:11:42,152
+It's exactly what you see.
+
+157
+00:11:43,181 --> 00:11:51,029
+If A is greater than B,
+then the result is 0, ...
+
+158
+00:11:51,873 --> 00:12:00,048
+... otherwise it's the sum of
+TERM applied to A ...
+
+159
+00:12:01,256 --> 00:12:11,560
+... and the SUM of TERM,
+next index ...
+
+160
+00:12:15,521 --> 00:12:16,833
+(we'll write it this way)
+
+161
+00:12:29,773 --> 00:12:31,637
+Now I'd like you to see
+some things first of all.
+
+162
+00:12:31,886 --> 00:12:34,130
+I was writing here, and
+I ran out of space.
+
+163
+00:12:35,049 --> 00:12:39,008
+What I did is start indenting
+according to the
+pretty-printing rule ...
+
+164
+00:12:39,225 --> 00:12:41,913
+... which says I align all of
+the arguments of the procedure,
+
+165
+00:12:43,649 --> 00:12:45,569
+so that I can see which
+ones go together.
+
+166
+00:12:46,881 --> 00:12:50,560
+And this is something I do
+automatically and I want you
+to learn how to do that, too, ...
+
+167
+00:12:50,729 --> 00:12:52,177
+... so your programs can be
+read and understood.
+
+168
+00:12:54,041 --> 00:12:59,369
+However...
+what do we have here...
+we have 4 arguments:
+
+169
+00:12:59,633 --> 00:13:06,761
+The procedure,
+the lower-bound index,
+the way to get the next index,
+and the upper bound.
+
+170
+00:13:08,952 --> 00:13:16,696
+What was passed along -
+on the recursive call -
+is, indeed, the same procedure,
+'cause I'm gonna need it again, ...
+
+171
+00:13:17,674 --> 00:13:20,706
+... the next index - which
+is using the next procedure
+to compute it, ...
+
+172
+00:13:21,187 --> 00:13:24,763
+... the procedure for
+computing next, which I also
+have, that's separately;
+and that's different.
+
+173
+00:13:25,106 --> 00:13:29,067
+The procedure for computing
+next is different from the
+next index, ...
+
+174
+00:13:29,323 --> 00:13:32,298
+... which is the result of using
+next on the last index.
+
+175
+00:13:32,546 --> 00:13:35,130
+And I also have to pass
+along the upper bound.
+
+176
+00:13:36,826 --> 00:13:46,219
+So this captures most of these,
+and the other nice programs
+that we were playing with.
+
+177
+00:13:47,354 --> 00:13:56,162
+So using this, we can write down
+the original programs as
+instances of SUM very simply.
+
+178
+00:14:06,051 --> 00:14:10,634
+... of A and B ...
+
+179
+00:14:15,571 --> 00:14:19,531
+Well I'm gonna need an
+identity procedure here,
+because, ah, ...
+
+180
+00:14:25,874 --> 00:14:32,066
+... the sum of the integers
+requires me to - in this case -
+compute a term for every integer,
+
+181
+00:14:32,403 --> 00:14:34,899
+but the term procedure doesn't
+want to do anything to
+that integer.
+
+182
+00:14:35,531 --> 00:14:38,971
+So the identity procedure
+on A is A.
+
+183
+00:14:39,510 --> 00:14:40,479
+... or X or whatever.
+
+184
+00:14:40,623 --> 00:14:47,079
+And I wanna say: the SUM of
+using IDENTITY of the
+term procedure, ...
+
+185
+00:14:52,128 --> 00:14:54,175
+... and using A as
+the initial index, ...
+
+186
+00:14:55,544 --> 00:15:01,888
+... and the incrementer being
+the way to get the next index, ...
+
+187
+00:15:02,128 --> 00:15:05,991
+... and B being the high bound,
+the upper bound.
+
+188
+00:15:07,679 --> 00:15:12,759
+This procedure does exactly the
+same as the
+sum of the integers over here.
+
+189
+00:15:13,016 --> 00:15:14,368
+Computes the same answer.
+
+190
+00:15:17,904 --> 00:15:20,839
+Now one thing you
+should see of course, ...
+
+191
+00:15:21,007 --> 00:15:25,831
+... is that there's nothing
+very special over here, about,
+what I used as a
+formal parameter.
+
+192
+00:15:26,024 --> 00:15:27,415
+I could have for example written this X.
+
+193
+00:15:28,007 --> 00:15:28,936
+And it doesn't matter.
+
+194
+00:15:29,481 --> 00:15:33,521
+I just wanted you to see, that
+this name does not conflict ...
+
+195
+00:15:33,863 --> 00:15:36,072
+... with this name at all -
+it's an internal name.
+
+196
+00:15:37,720 --> 00:15:42,836
+For the second procedure here,
+the sum of the squares, it's
+even a little bit easier.
+
+197
+00:15:52,960 --> 00:15:54,568
+And what do we have to do?
+
+198
+00:15:54,880 --> 00:15:58,128
+Nothing more than
+add up the squares.
+
+199
+00:16:01,368 --> 00:16:09,688
+And this is the procedure that
+each index will be given... will
+be given each index... - yes...
+Each index will have this done
+to it to get the term.
+
+200
+00:16:10,329 --> 00:16:12,879
+That's the thing that maps
+against term over here.
+
+201
+00:16:13,312 --> 00:16:15,616
+Then I have A as a lower bound, ...
+
+202
+00:16:16,663 --> 00:16:19,719
+... the incrementor as a
+next term method, ...
+
+203
+00:16:20,113 --> 00:16:21,711
+... and B as the upper bound.
+
+204
+00:16:26,744 --> 00:16:30,048
+And finally, just for the thing that
+we did about pythons...
+
+205
+00:16:31,039 --> 00:16:35,664
+Pythons are sort of, well...
+it's even easier to think about
+them this way.
+
+206
+00:16:35,807 --> 00:16:36,848
+'cause I don't have to think!
+
+207
+00:16:37,031 --> 00:16:42,199
+What I'm doing is separating: the
+thing I'm adding up, from the
+method of doing the addition.
+
+208
+00:16:43,232 --> 00:16:45,234
+And so we have here,
+for example:
+
+209
+00:16:54,936 --> 00:16:58,368
+... PI-SUM A B
+of a SUM of things.
+
+210
+00:17:00,080 --> 00:17:04,632
+I'm gonna write the term
+procedure here explicitly, without
+giving it a name.
+
+211
+00:17:05,536 --> 00:17:09,760
+This is anonymously, I don't
+necessarily have to give a
+name to something.
+
+212
+00:17:10,368 --> 00:17:11,879
+If I just wanna use it once.
+
+213
+00:17:12,632 --> 00:17:18,631
+And of course I can write sort of
+a expression that produces a
+procedure.
+
+214
+00:17:19,351 --> 00:17:22,360
+I'm going to write the greek
+lambda letter here, ...
+
+215
+00:17:22,528 --> 00:17:26,976
+... instead of L-A-M-B-D-A
+in general to avoid taking up
+a lot of space on blackboards.
+
+216
+00:17:27,200 --> 00:17:33,784
+Unfortunately we don't have
+lambda keys on our keyboards,
+maybe we can convince our
+friends in the computer industry
+that this is important.
+
+217
+00:17:34,256 --> 00:17:45,161
+Lambda of i...
+it's the quotient of 1 and
+the product of i and sum of i, 2.
+
+218
+00:17:52,073 --> 00:18:03,241
+Starting at A;
+the way of incrementing being
+that procedure of an index i,
+which adds i to 4, ...
+
+219
+00:18:06,258 --> 00:18:09,809
+... and b being the upper bound.
+
+220
+00:18:12,337 --> 00:18:24,992
+So we can see that this is
+notation - the invention of the
+procedure that takes a procedural
+argument - allows us to compress
+a lot of these procedures into
+one thing.
+
+221
+00:18:26,201 --> 00:18:31,368
+This procedure SUM covers
+a whole bunch of ideas.
+
+222
+00:18:32,545 --> 00:18:34,513
+Now just why is this important?
+
+223
+00:18:34,705 --> 00:18:37,641
+I tried to say before that it helps
+us divide a problem into
+two pieces.
+
+224
+00:18:38,073 --> 00:18:39,161
+And indeed it does.
+
+225
+00:18:40,657 --> 00:18:45,001
+For example, if someone came up
+with a different way of
+implementing this, ...
+
+226
+00:18:46,161 --> 00:18:48,226
+... which of course, one might.
+
+227
+00:18:49,969 --> 00:18:52,728
+Here is for example, an
+iterative implementation of SUM.
+
+228
+00:18:55,505 --> 00:18:59,057
+Iterative implementations for
+some reasons might be better ...
+
+229
+00:18:59,448 --> 00:19:00,841
+... than the
+recursive implementation.
+
+230
+00:19:03,304 --> 00:19:05,200
+But the important thing is
+it's different.
+
+231
+00:19:06,208 --> 00:19:09,553
+Now, supposing I had written my
+programs this way,
+that you see ...
+
+232
+00:19:09,688 --> 00:19:12,544
+... on the blackboard on the left.
+
+233
+00:19:14,649 --> 00:19:16,273
+... It's correct. The left.
+
+234
+00:19:17,545 --> 00:19:20,521
+Well then, if I want to change the
+method of addition, ...
+
+235
+00:19:21,209 --> 00:19:23,889
+... then I'd have to change
+each of these.
+
+236
+00:19:24,728 --> 00:19:29,464
+Whereas, if I write them like
+this, that you see here, ...
+
+237
+00:19:29,881 --> 00:19:33,593
+... then the method by which I
+did the addition is encapsulated
+in the procedure SUM.
+
+238
+00:19:34,969 --> 00:19:38,593
+That decomposition allows me
+to independently change one
+part of the program, ...
+
+239
+00:19:39,761 --> 00:19:40,858
+... and improve it perhaps, ...
+
+240
+00:19:41,369 --> 00:19:47,032
+... without changing the other
+part, that was written for
+some other cases.
+
+241
+00:19:50,596 --> 00:19:51,989
+Thank you, are there
+any questions?
+
+242
+00:19:52,065 --> 00:19:54,806
+- Yes Sir.
+
+- [muffled] ... NEXT A ... [muffled]
+
+243
+00:19:55,041 --> 00:19:58,986
+- Yes, it's the same problem.
+I'm sure you're gonna ...
+you're gonna
+have to work on this, ...
+
+244
+00:19:59,169 --> 00:20:02,049
+... this is hard, the first time
+you've ever seen something
+like this.
+
+245
+00:20:02,258 --> 00:20:08,961
+What I have here, is: Procedures
+can be named by variables.
+
+246
+00:20:09,261 --> 00:20:11,743
+Procedures are not special.
+
+247
+00:20:12,431 --> 00:20:18,079
+Actually, SUM-SQuare is a
+variable, which has gotten a
+value, which is a procedure.
+
+248
+00:20:18,551 --> 00:20:21,392
+This is DEFINEd SUM-SQuare to
+be lambda of A and B something.
+
+249
+00:20:22,392 --> 00:20:25,351
+So the procedures can be
+named, therefore they can be ...
+
+250
+00:20:25,655 --> 00:20:30,400
+... passed from one procedure to
+another, as arguments.
+
+251
+00:20:30,983 --> 00:20:35,694
+What we're doing here is we're
+passing the procedure TERM
+as an argument to SUM.
+
+252
+00:20:36,942 --> 00:20:39,960
+Just so that we get it around
+in the next recursion.
+
+253
+00:20:40,774 --> 00:20:46,895
+Here we're passing the procedure
+NEXT as an argument also.
+
+254
+00:20:47,319 --> 00:20:51,176
+However, here we're _using_ the
+procedure NEXT - that's what the
+parentheses mean.
+
+255
+00:20:51,951 --> 00:20:55,560
+We're applying NEXT to A to get
+the next value of A.
+
+256
+00:20:56,319 --> 00:20:58,575
+If you look at what NEXT is
+mapped against we see ...
+
+257
+00:20:58,856 --> 00:21:05,335
+Remember, that the way you
+think about this is that
+you substitute the argument
+with the former parameters,
+in the body.
+
+258
+00:21:06,207 --> 00:21:10,943
+If you're ever confused, think of
+it that way.
+
+259
+00:21:11,423 --> 00:21:15,351
+Well, over here is the
+sum of the integers.
+
+260
+00:21:15,551 --> 00:21:25,048
+I substitute identity for
+term and 1+, the incrementor, for
+NEXT in the body.
+
+261
+00:21:25,583 --> 00:21:29,743
+Well, the identity procedure on
+A is what I get here.
+
+262
+00:21:30,159 --> 00:21:31,879
+The identity is being
+passed along.
+
+263
+00:21:32,968 --> 00:21:38,559
+And here I have increment, 1+,
+being applied to A.
+
+264
+00:21:40,047 --> 00:21:41,472
+And 1+ is being passed along.
+
+265
+00:21:41,507 --> 00:21:45,434
+Does that clarify the situation?
+
+266
+00:21:45,881 --> 00:21:50,951
+- We could also define quickly
+those two functions and then
+pass them...
+
+267
+00:21:51,200 --> 00:21:53,975
+- Oh yeah, sure. What we could
+do is, we could have
+given names to them.
+
+268
+00:21:54,543 --> 00:21:58,623
+Just like I did here. It's like I
+gave you various ways,
+so you could see it, a variety.
+
+269
+00:21:58,864 --> 00:22:06,383
+I mean, here, I defined a thing,
+which I passed the name of,
+I referenced it by its name.
+
+270
+00:22:06,959 --> 00:22:11,584
+But the thing was in fact: that
+procedure of one argument X,
+which is X.
+
+271
+00:22:12,400 --> 00:22:17,986
+The identity procedure is just
+lambda of X, X. Right?
+
+272
+00:22:18,355 --> 00:22:20,915
+And that's what you're
+seeing here.
+
+273
+00:22:20,916 --> 00:22:26,428
+Here I happend to just write its
+canonical name, there for you
+to see.
+
+274
+00:22:28,556 --> 00:22:32,964
+Okay?
+So should we take our
+5-minute break?
+
+275
+00:23:15,035 --> 00:23:16,418
+As I said, ...
+
+276
+00:23:17,226 --> 00:23:18,690
+... computers to make
+people happy,
+
+277
+00:23:19,089 --> 00:23:20,418
+not people to make
+computers happy.
+
+278
+00:23:20,834 --> 00:23:25,226
+And, for the most part, the
+reason why we introduced all
+this abstraction stuff, is to
+make it so that ...
+
+279
+00:23:25,425 --> 00:23:27,778
+... programs can be more easily
+written and more easily read.
+
+280
+00:23:29,435 --> 00:23:33,490
+Let's try to understand what's the
+most complicated program we've
+seen so far,
+
+281
+00:23:33,987 --> 00:23:37,115
+using a little bit of
+this abstraction stuff.
+
+282
+00:23:38,138 --> 00:23:39,667
+We can look at the slide.
+
+283
+00:23:40,074 --> 00:23:49,243
+This is the Heron of Alexandria's
+method of computing square
+roots, that we saw yesterday.
+
+284
+00:23:51,507 --> 00:23:54,362
+And, let's see...
+
+285
+00:23:56,226 --> 00:24:01,250
+Well, in any case, this program's
+a little complicated.
+
+286
+00:24:01,858 --> 00:24:05,465
+And at the current state of your
+thinking, you just can't look at
+that and say,
+
+287
+00:24:05,977 --> 00:24:08,999
+"Oh this obviously means
+something very, very clear."
+
+288
+00:24:10,030 --> 00:24:14,791
+It's not obvious from looking at
+the program what it's computing.
+
+289
+00:24:15,912 --> 00:24:19,640
+There is some loop here
+inside try, ...
+
+290
+00:24:20,583 --> 00:24:24,568
+... and the loop does something
+about trying the
+improvement of y, ...
+
+291
+00:24:25,937 --> 00:24:32,695
+... there's something called
+improve, which does some
+averaging, and quotienting,
+and things like that.
+
+292
+00:24:33,239 --> 00:24:34,685
+But what's the real idea?
+
+293
+00:24:34,822 --> 00:24:37,587
+Can we make it clear
+what the idea is?
+
+294
+00:24:38,505 --> 00:24:39,746
+Well, I think we can.
+
+295
+00:24:41,330 --> 00:24:45,186
+I think we can use abstraction,
+that we have learned about
+so far,
+
+296
+00:24:45,514 --> 00:24:47,866
+to clarify what's going on.
+
+297
+00:24:48,762 --> 00:24:50,762
+Now what we have,
+mathematically, is ...
+
+298
+00:24:52,474 --> 00:24:56,897
+... a procedure for improving a
+guess for square roots.
+
+299
+00:24:57,402 --> 00:25:04,609
+And if y is a guess for a square
+root, then what we want to
+get, we'll call a function f -
+
+300
+00:25:05,042 --> 00:25:06,322
+this is for the
+means of improvement.
+
+301
+00:25:07,482 --> 00:25:18,473
+I wanna get y plus x over y,
+over 2 - it's the average of
+y and x divided by y - as ...
+
+302
+00:25:19,642 --> 00:25:23,106
+... the improved value for the
+square root of x.
+
+303
+00:25:23,994 --> 00:25:26,905
+Such that, one thing you can
+notice about this function f,
+
+304
+00:25:27,746 --> 00:25:30,137
+is that, f of the square root of x,
+
+305
+00:25:35,033 --> 00:25:37,923
+is in fact the square root of x.
+
+306
+00:25:38,955 --> 00:25:42,826
+Whereas if I take the
+square root of x as
+substitute for y here, ...
+
+307
+00:25:43,257 --> 00:25:47,042
+... I see the square root of x, plus
+x divided by the square root of x,
+- which is the square root of x -
+
+308
+00:25:47,226 --> 00:25:50,618
+... that's two times the
+square root of x divided by 2
+is the square root of x.
+
+309
+00:25:51,330 --> 00:25:54,386
+So in fact, what we're really
+looking for, is ...
+
+310
+00:25:54,650 --> 00:25:56,561
+... we're looking for a fixed point.
+
+311
+00:25:56,596 --> 00:26:12,954
+A fixed-point of the function f.
+
+312
+00:26:17,289 --> 00:26:25,113
+A fixed point is the place which
+has the property, that if you
+put it into the function, you get
+the same value out.
+
+313
+00:26:27,345 --> 00:26:37,297
+Now I suppose if we were giving
+some nice boring lecture and you
+have in front of you a HP35 desk
+calculator, like I used to have,
+when I went to boring lectures, ...
+
+314
+00:26:37,969 --> 00:26:41,945
+... and you think it is really
+boring, you put it into
+radiance mode, ...
+
+315
+00:26:42,290 --> 00:26:45,793
+... and hit cosine,
+and hit cosine,
+and hit cosine.
+
+316
+00:26:46,001 --> 00:26:49,729
+And eventually you end up
+with .734 or something like that.
+
+317
+00:26:49,977 --> 00:26:52,297
+.743, I don't remember
+what exactly.
+
+318
+00:26:52,440 --> 00:26:53,929
+It gets closer and closer to that.
+
+319
+00:26:54,192 --> 00:26:58,321
+Some functions have the property
+that you can find their fixed point
+
+320
+00:26:59,041 --> 00:27:00,761
+by iterating the function.
+
+321
+00:27:02,601 --> 00:27:08,009
+And that's essentially what's
+happening in the square root
+program by Heron's method.
+
+322
+00:27:11,553 --> 00:27:14,368
+So let's see if we can write that
+down, that idea.
+
+323
+00:27:14,872 --> 00:27:17,321
+Now I'm not gonna say how I can
+compute fixed points yet.
+
+324
+00:27:17,561 --> 00:27:19,025
+There might be more than
+one way.
+
+325
+00:27:19,249 --> 00:27:20,688
+But the first thing to do, ...
+
+326
+00:27:21,010 --> 00:27:23,930
+... is to say what I just said.
+
+327
+00:27:24,105 --> 00:27:27,249
+I'm gonna say it specifically,
+for square root.
+
+328
+00:27:32,449 --> 00:27:37,440
+The square root of x is the
+fixed point ...
+
+329
+00:27:43,777 --> 00:27:45,817
+... of that procedure, ...
+
+330
+00:27:47,873 --> 00:28:02,985
+... which takes an argument y and
+averages x divided by y with y.
+
+331
+00:28:05,241 --> 00:28:09,746
+And it starts up with an initial
+guess, for the fixed point, of 1.
+
+332
+00:28:09,961 --> 00:28:11,633
+Doesn't matter where it starts.
+
+333
+00:28:11,849 --> 00:28:13,961
+A theorem of having to do with
+square roots.
+
+334
+00:28:18,354 --> 00:28:22,340
+So what you're seeing here, is
+I'm just trying to write out, by
+wishful thinking ...
+
+335
+00:28:22,541 --> 00:28:24,148
+I don't know how I'm gonna
+make fixed point happen.
+
+336
+00:28:24,571 --> 00:28:25,844
+We'll worry about that later.
+
+337
+00:28:26,068 --> 00:28:30,820
+But if somehow I had a way of
+finding the fixed point of the
+function computed by
+this procedure,
+
+338
+00:28:32,429 --> 00:28:35,827
+then I would have...
+That would be the square root
+that I'm looking for.
+
+339
+00:28:39,021 --> 00:28:41,189
+Okay, now let's see how
+we're gonna write ...
+
+340
+00:28:41,357 --> 00:28:42,725
+How we're gonna come up with
+fixed points.
+
+341
+00:28:43,244 --> 00:28:44,661
+Well, it's very simple actually.
+
+342
+00:28:44,797 --> 00:28:47,660
+I'm gonna write an abbreviated
+version here, just so we
+understand it.
+
+343
+00:29:00,148 --> 00:29:02,733
+I'm gonna find the
+fixed point of a function f.
+
+344
+00:29:03,102 --> 00:29:08,945
+Actually...
+The fixed point of the function,
+computed by the procedure,
+whose name will be f in
+this procedure.
+
+345
+00:29:09,165 --> 00:29:11,974
+How's that? Long sense.
+
+346
+00:29:13,070 --> 00:29:15,583
+Starting with a particular
+starting value.
+
+347
+00:29:19,117 --> 00:29:21,749
+Well I'm going to have a
+little loop inside here, ...
+
+348
+00:29:22,134 --> 00:29:25,790
+which is going to push the
+button on the calculator,
+repeatedly,
+
+349
+00:29:26,509 --> 00:29:28,230
+hoping that it'll eventually
+converge.
+
+350
+00:29:28,926 --> 00:29:30,437
+And we will say here.
+
+351
+00:29:33,773 --> 00:29:36,470
+Internal loops are written by
+defining internal procedures.
+
+352
+00:29:38,918 --> 00:29:42,893
+Well, one thing I'm gonna have to
+do is, I'm going to have to say
+wether I'm done.
+
+353
+00:29:43,302 --> 00:29:49,069
+And the way to decide when I'm
+done is when the old value and
+the new value are close enough, so
+I can't distinguish them anymore.
+
+354
+00:29:50,726 --> 00:29:55,828
+It's the saner thing you do on the
+calculator, unless you look for
+more precision and eventually
+you run out of precision.
+
+355
+00:29:57,846 --> 00:30:04,278
+So, the old value and the
+new value
+
+356
+00:30:05,662 --> 00:30:10,693
+And I'm going to say here:
+if I can't distinguish them,
+if they're close enough, ...
+
+357
+00:30:15,134 --> 00:30:16,589
+... - and we'll have to worry about
+what that is soon - ...
+
+358
+00:30:20,429 --> 00:30:24,349
+... the OLD value and NEW value
+are CLOSE-ENOUGH to each other,
+then let's pick the NEW value
+as the answer,
+
+359
+00:30:25,621 --> 00:30:28,549
+... otherwise I'm gonna iterate
+around again,
+
+360
+00:30:31,141 --> 00:30:36,261
+with the next value of OLD
+being the current value of NEW,
+
+361
+00:30:38,247 --> 00:30:43,118
+and the next value of NEW being
+the result of calling F on NEW.
+
+362
+00:30:53,877 --> 00:30:58,109
+And so this is my iteration
+loop that pushes the button
+on the calculator.
+
+363
+00:30:58,146 --> 00:31:01,734
+I'd basically think of it as
+having two registers in the
+calculator, OLD and NEW.
+
+364
+00:31:02,508 --> 00:31:07,333
+And at each step,
+NEW becomes OLD, and
+NEW gets F of NEW.
+
+365
+00:31:08,924 --> 00:31:11,429
+So this is the thing where I'm
+getting the next value.
+
+366
+00:31:12,966 --> 00:31:14,894
+And now I'm gonna
+start this thing up, ...
+
+367
+00:31:20,917 --> 00:31:22,716
+... by giving two values.
+
+368
+00:31:28,230 --> 00:31:30,158
+Now I wrote that on the
+black board to be slow,
+
+369
+00:31:30,405 --> 00:31:32,030
+so you could see this.
+
+370
+00:31:32,214 --> 00:31:35,518
+This is the first time you've seen
+something quite this complicated,
+I think.
+
+371
+00:31:37,468 --> 00:31:42,110
+However, we might wanna see
+the whole thing over here...
+
+372
+00:31:44,428 --> 00:31:49,069
+In this transparency,
+or slide, or whatever.
+
+373
+00:31:50,317 --> 00:31:58,101
+What we have, is all of the
+details that are required to
+make this thing work.
+
+374
+00:31:58,317 --> 00:32:02,773
+I have a way of getting a
+tolerance for a close-enough
+procedure, which we see here.
+
+375
+00:32:03,134 --> 00:32:10,942
+The close-enough procedure, it
+tests wether u and v are close
+enough, by seeing if the absolute
+value of the difference in u and v
+is less than the given tolerance.
+
+376
+00:32:12,318 --> 00:32:14,697
+And here is the iteration
+loop that I just wrote on the
+blackboard,
+
+377
+00:32:15,005 --> 00:32:18,438
+and the
+initialization for it, which is right there.
+
+378
+00:32:20,670 --> 00:32:22,533
+It's very simple.
+
+379
+00:32:33,974 --> 00:32:36,013
+But let's see, I haven't told
+you enough.
+
+380
+00:32:36,382 --> 00:32:37,950
+It's actually easier than this.
+
+381
+00:32:39,430 --> 00:32:42,661
+There is more structure to this
+problem than I've already
+told you.
+
+382
+00:32:42,914 --> 00:32:44,806
+Like, why should this work?
+
+383
+00:32:45,155 --> 00:32:46,741
+Why should it converge?
+
+384
+00:32:47,357 --> 00:32:51,825
+Well, here's a hairy theorem of
+mathematics tied up in what I've
+written here.
+
+385
+00:32:52,555 --> 00:32:58,459
+Why is it that I should assume
+that by iterating, averaging the
+quotient of x and y, and y,
+that I should get the right answer?
+
+386
+00:32:59,550 --> 00:33:00,586
+It isn't so obvious.
+
+387
+00:33:02,994 --> 00:33:10,547
+Surely there are other things,
+other procedures, which compute
+functions, whose fixed points
+would also be the square root.
+
+388
+00:33:11,232 --> 00:33:14,224
+For example, the obvious one.
+
+389
+00:33:16,649 --> 00:33:25,808
+The obvious one will be a new
+function g which maps y to
+x over y.
+
+390
+00:33:27,312 --> 00:33:28,808
+That's even simpler.
+
+391
+00:33:29,864 --> 00:33:33,311
+The fixed point of g is surely
+the square root also.
+
+392
+00:33:33,881 --> 00:33:35,271
+And it's a simpler procedure.
+
+393
+00:33:37,192 --> 00:33:38,544
+Why am I not using it.
+
+394
+00:33:38,944 --> 00:33:40,081
+Well I suppose we know.
+
+395
+00:33:40,391 --> 00:33:42,400
+Supposing x is 2, and I start out
+with 1,
+
+396
+00:33:42,808 --> 00:33:51,884
+Then
+if I divide one into two, I get two,
+and then if
+I divide two into two, I get one.
+If I divide one into two I get two,
+and two into two I get one,
+
+397
+00:33:52,236 --> 00:33:54,084
+and I never get
+any closer to the square root.
+
+398
+00:33:54,714 --> 00:33:56,396
+This oscillates.
+
+399
+00:33:58,467 --> 00:34:01,329
+So what we have is a
+signal processing system.
+
+400
+00:34:02,844 --> 00:34:05,787
+An electrical circuit
+which is oscillating,
+
+401
+00:34:05,908 --> 00:34:07,788
+and I wanna damp out
+these oscillations.
+
+402
+00:34:10,243 --> 00:34:11,452
+Well I can do that.
+
+403
+00:34:11,635 --> 00:34:14,364
+See what I'm really doing here,
+when I'm taking my average,
+
+404
+00:34:14,651 --> 00:34:18,459
+the average is averaging the
+last two values of something
+which oscillates,
+
+405
+00:34:18,804 --> 00:34:20,291
+getting something in between.
+
+406
+00:34:21,235 --> 00:34:25,035
+A classic way of damping out
+oscillations in a signal
+processing system.
+
+407
+00:34:28,251 --> 00:34:32,659
+So why don't we write down the
+strategy I just said in a more
+clear way?
+
+408
+00:34:34,316 --> 00:34:35,251
+Well that's easy enough.
+
+409
+00:34:35,286 --> 00:34:56,779
+I'm gonna define the square root
+of X to be a fixed point of the
+procedure resulting from
+average damping.
+
+410
+00:34:57,700 --> 00:35:01,660
+So we have a procedure
+resulting from
+AVERAGE-DAMP ...
+
+411
+00:35:09,363 --> 00:35:16,795
+... of the procedure ..
+that procedure of y, which ...
+
+412
+00:35:16,964 --> 00:35:25,563
+divides x by y, starting out at 1.
+
+413
+00:35:29,860 --> 00:35:34,532
+But AVERAGE-DAMP is a special
+procedure, that's going to take
+a procedure as its argument,
+
+414
+00:35:34,828 --> 00:35:36,835
+and return a procedure
+as its value.
+
+415
+00:35:37,338 --> 00:35:39,491
+Its a generalization, that says:
+
+416
+00:35:39,659 --> 00:35:48,675
+Given a procedure, it's the thing
+which produces a procedure which
+averages the last the last value .. -
+the value before and after
+running the procedure.
+
+417
+00:35:50,299 --> 00:35:53,691
+You can use it for anything if you
+wanna damp out oscillations.
+
+418
+00:35:54,804 --> 00:35:56,484
+So let's write that down.
+
+419
+00:35:56,723 --> 00:35:57,956
+It's very easy.
+
+420
+00:36:01,028 --> 00:36:10,628
+And stylistically here I'm gonna
+use lambda notation, 'cause it's
+much easier to think when you're
+dealing with procedures that
+manipulate procedures to
+understand that the procedures
+are the objects I'm dealing with,
+
+421
+00:36:10,802 --> 00:36:14,867
+so I'm gonna use lambda notation
+here - not always, I don't
+always use it,
+
+422
+00:36:15,988 --> 00:36:21,828
+but very specifically here,
+to expand on that idea, to
+elucidate it.
+
+423
+00:36:28,891 --> 00:36:36,667
+Well, AVERAGE-DAMP is a
+procedure, which takes a
+procedure as its argument,
+which we'll call f.
+
+424
+00:36:37,284 --> 00:36:38,324
+And what does it produce?
+
+425
+00:36:38,515 --> 00:36:46,132
+It produces as its value - the body
+of this procedure is a thing
+which produces a procedure, the
+constructor for procedures
+right here,
+
+426
+00:36:46,435 --> 00:37:00,475
+of one argument x, which
+averages f of x with x.
+
+427
+00:37:10,380 --> 00:37:12,124
+This is a very special thing.
+
+428
+00:37:13,764 --> 00:37:19,770
+I think for the first time
+you're seeing a procedure which
+produces a procedure as its value.
+
+429
+00:37:21,747 --> 00:37:28,540
+And this procedure takes a
+procedure f, and does something
+to it, to produce a new procedure
+of one argument x,
+
+430
+00:37:28,979 --> 00:37:34,619
+which averages
+f, this f, applied to x,
+and x itself.
+
+431
+00:37:35,818 --> 00:37:45,043
+Using the context here, I apply
+average damping to the procedure
+which is just divides x by y,
+it's a division.
+
+432
+00:37:47,491 --> 00:37:54,556
+And then finding the fixed point
+of that and that's a clearer way of
+writing down what I wrote
+down over here:
+
+433
+00:37:55,836 --> 00:37:58,092
+Wherever it was... here.
+
+434
+00:37:59,379 --> 00:38:01,260
+'cause it tells why I'm writing this
+down.
+
+435
+00:38:06,371 --> 00:38:11,907
+I suppose this to some extent
+really clarifies what Heron
+of Alexandria was up to.
+
+436
+00:38:14,132 --> 00:38:15,707
+I suppose we stop now, are there
+any questions?
+
+437
+00:38:17,899 --> 00:38:23,332
+- So when you define
+AVERAGE-DAMP, don't you need
+to have a variable, f?
+
+438
+00:38:24,972 --> 00:38:29,483
+- Ah, the question was, and here
+we're having again:
+You gotta learn about the syntax.
+
+439
+00:38:29,699 --> 00:38:37,315
+The question was, when defining
+AVERAGE-DAMP, don't you have
+to have a variable, defined with f?
+
+440
+00:38:37,571 --> 00:38:41,051
+What you're asking is the formal
+parameter of f?
+- Yeah.
+
+441
+00:38:41,411 --> 00:38:49,339
+- Okay, the formal parameter
+of f is here.
+The formal parameter of f ...
+- The formal parameter of
+AVERAGE-DAMP.
+
+442
+00:38:50,323 --> 00:38:53,220
+- f is being applied to
+an argument, right?
+
+443
+00:38:54,348 --> 00:38:56,852
+Then it's indeed true that f must
+have a formal parameter.
+
+444
+00:38:57,564 --> 00:38:59,866
+Let's find out what f's
+formal parameter is.
+
+445
+00:39:00,267 --> 00:39:04,644
+- The formal parameter of
+AVERAGE-DAMP.
+- Oh, f is the formal parameter
+of AVERAGE-DAMP.
+
+446
+00:39:04,861 --> 00:39:07,411
+I'm sorry, you're just confusing
+a syntactic thing.
+
+447
+00:39:07,724 --> 00:39:09,427
+I could have written this
+the other way.
+
+448
+00:39:09,748 --> 00:39:11,587
+I'm sorry I didn't understand
+your question.
+
+449
+00:39:12,004 --> 00:39:15,827
+Of course I could have written it
+this other way.
+
+450
+00:39:19,323 --> 00:39:20,732
+Those are identical notations.
+
+451
+00:39:21,163 --> 00:39:26,028
+This is a different way of writing
+this:
+
+452
+00:39:31,484 --> 00:39:34,140
+You're gonna have to
+get used to lambda notation,
+'cause I'm gonna use it.
+
+453
+00:39:34,508 --> 00:39:43,587
+Okay,
+what it says here, I'm defining
+the name AVERAGE-DAMP
+to name the procedure
+who is of one argument f.
+
+454
+00:39:44,356 --> 00:39:47,267
+That's the formal parameter
+of the procedure AVERAGE-DAMP.
+
+455
+00:39:48,908 --> 00:39:55,475
+What this define does,
+is it says,
+give this name a value.
+
+456
+00:39:56,251 --> 00:39:58,419
+Here is the value for it.
+
+457
+00:40:00,595 --> 00:40:08,571
+There happens to be a
+funny syntax to make that easier
+in some cases,
+it's purely convenience.
+
+458
+00:40:10,651 --> 00:40:13,595
+But the reason why I wrote it
+this way here is to emphasize,
+
+459
+00:40:14,675 --> 00:40:19,316
+that I'm dealing with a
+procedure, that takes a
+procedure as its argument, and
+produces a procedure as its value.
+
+460
+00:40:23,107 --> 00:40:29,147
+- I don't understand why
+you use lambda trice.
+Can you just use one lambda
+and take two arguments f and x?
+
+461
+00:40:29,340 --> 00:40:29,841
+- No.
+- No?
+
+462
+00:40:30,129 --> 00:40:38,021
+- That would be a different thing.
+If I were to write the procedure
+lambda of f and x, the
+average of x and x,
+
+463
+00:40:38,341 --> 00:40:44,109
+That would not be something,
+which would be allowed to take
+a procedure as an argument, and
+produce a procedure as its value.
+
+464
+00:40:44,332 --> 00:40:49,301
+That would be a thing that takes
+a procedure as its argument, and
+a number as its argument, and
+produces a new number.
+
+465
+00:40:50,540 --> 00:40:57,276
+But what I'm producing here is a
+procedure to fit in the procedure
+slot over here, which is going
+to be used over here.
+
+466
+00:40:58,429 --> 00:41:00,534
+So the number has to come
+from here.
+
+467
+00:41:01,372 --> 00:41:03,877
+This is the thing that's gonna
+eventually end up in the x.
+
+468
+00:41:04,134 --> 00:41:08,764
+And if you're confused you should
+do some substitution, and
+see for yourself.
+
+469
+00:41:11,757 --> 00:41:17,437
+Yes?
+- Would you please show the
+definition for AVERAGE-DAMP
+without using lambda notation?
+
+470
+00:41:17,741 --> 00:41:22,641
+- Oh, I can't make a very simple
+one like that. Let me do it for you
+though, okay?
+
+471
+00:41:22,858 --> 00:41:24,185
+I can get rid of this lambda easily.
+
+472
+00:41:25,602 --> 00:41:28,745
+I don't wanna be... okay.
+
+473
+00:41:32,561 --> 00:41:33,729
+Actually I'm lying to you.
+
+474
+00:41:33,882 --> 00:41:37,882
+I don't wanna do what you want.
+'cause I think it's more confusing
+than you think.
+
+475
+00:41:38,226 --> 00:41:40,394
+I'm not
+gonna write what you want.
+
+476
+00:41:54,106 --> 00:41:57,154
+We have to give it a name...
+
+477
+00:41:56,376 --> 00:41:59,618
+FOO, of X, to be...
+
+478
+00:42:05,153 --> 00:42:09,744
+... of F, of X, and X, ...
+
+479
+00:42:11,704 --> 00:42:13,312
+... and return as a value FOO.
+
+480
+00:42:17,145 --> 00:42:18,024
+This is equivalent.
+
+481
+00:42:19,304 --> 00:42:20,753
+But I have to
+make an arbitrary name up.
+
+482
+00:42:21,249 --> 00:42:24,503
+This is equivalent to this
+without any lambdas.
+
+483
+00:42:24,998 --> 00:42:33,570
+Okay? Since lambda is very
+convenient for naming
+anonymous procedures. It's the
+anonymous name of something.
+
+484
+00:42:33,856 --> 00:42:40,344
+Now, if you really wanna know
+a cute way of doing this,
+we'll talk about it later.
+
+485
+00:42:41,785 --> 00:42:44,520
+Where you don't have to define
+the anonymous procedure.
+
+486
+00:42:45,056 --> 00:42:46,241
+Okay, other questions?
+
+487
+00:42:49,616 --> 00:42:51,040
+I suppose we go
+for our break again.
+
+488
+00:43:31,042 --> 00:43:39,528
+So now we've seen how to
+use higher-order procedures,
+they're called. That's procedures
+that take procedural arguments
+and produce procedural values,
+
+489
+00:43:39,921 --> 00:43:44,688
+to help us clarify and abstract
+some otherwise
+complicated processes.
+
+490
+00:43:45,882 --> 00:43:48,545
+I suppose what I'd like to do now
+is have a bit of fun with that,
+
+491
+00:43:49,560 --> 00:43:52,753
+and sort of
+a little practice as well.
+
+492
+00:43:54,016 --> 00:43:56,105
+So let's play with this
+square root thing even more,
+
+493
+00:43:56,288 --> 00:44:01,912
+let's elaborate it and understand
+what's going on and make use of
+this kind of programming style.
+
+494
+00:44:04,033 --> 00:44:17,880
+But one thing that you might
+know is that there's a
+general method called Newton's
+method, the purpose of which
+is to find the roots - that's the
+zeroes - of functions.
+
+495
+00:44:18,888 --> 00:44:37,093
+So, for example, to find a y,
+such that
+f of y equals zero.
+
+496
+00:44:37,867 --> 00:44:40,964
+We start with some guess,
+this is Newton's method.
+
+497
+00:44:50,684 --> 00:44:54,003
+And the guess we'll start with,
+we'll call y_0.
+
+498
+00:44:54,876 --> 00:44:59,180
+And then we will iterate the
+following expression:
+
+499
+00:45:01,075 --> 00:45:22,188
+y_(n+1)
+- this is a difference equation -
+is y_n minus f of y_n over the
+derivative with respect to y, of f,
+evaluated at y equal y_n.
+
+500
+00:45:23,140 --> 00:45:24,604
+Very strange notation.
+
+501
+00:45:26,725 --> 00:45:29,355
+I must say, ugh.
+
+502
+00:45:30,907 --> 00:45:34,715
+The derivative of f
+with respect to y
+is a function.
+
+503
+00:45:35,692 --> 00:45:38,900
+And I'm having a little bit
+of unhappiness with that, but
+that's all right.
+
+504
+00:45:39,292 --> 00:45:42,452
+Turns out the programming
+language world notation
+is much clearer.
+
+505
+00:45:42,964 --> 00:45:44,516
+Now what is this?
+
+506
+00:45:45,564 --> 00:45:46,704
+This is what's called
+Newton's method.
+
+507
+00:45:46,992 --> 00:45:52,624
+It's a method for finding
+the roots of the function f.
+
+508
+00:45:53,562 --> 00:45:57,528
+And it of course, sometimes
+converges, and it does so
+very fast,
+
+509
+00:45:58,008 --> 00:46:02,570
+and sometimes it doesn't
+converge, and... oh well, we'll
+have to do something else.
+
+510
+00:46:02,889 --> 00:46:05,610
+But let's talk about sqaure root
+by Newton's method.
+
+511
+00:46:06,922 --> 00:46:08,425
+Well that's rather interesting.
+
+512
+00:46:08,593 --> 00:46:10,443
+Let's do exactly the same
+thing we did last time.
+
+513
+00:46:10,778 --> 00:46:12,010
+A bit of wishful thinking.
+
+514
+00:46:13,369 --> 00:46:16,585
+We will apply Newton's method,
+assuming we knew how to do it.
+
+515
+00:46:18,097 --> 00:46:19,209
+We don't know how to do it yet.
+
+516
+00:46:20,546 --> 00:46:21,128
+Well, let's go.
+
+517
+00:46:25,538 --> 00:46:26,929
+What do I have here?
+the square root of x.
+
+518
+00:46:31,049 --> 00:46:40,762
+It's Newton's method, applied to
+a procedure which will represent
+that function of y, which
+computes that function of y.
+
+519
+00:46:42,250 --> 00:46:51,746
+Well that procedure is that
+procedure of y, which is the
+difference between x and the
+square of y.
+
+520
+00:46:59,521 --> 00:47:10,257
+Indeed, if I had a value of y,
+for which this were 0, then y
+would be the square root of x.
+
+521
+00:47:13,130 --> 00:47:14,361
+See that?
+
+522
+00:47:15,249 --> 00:47:24,090
+Okay, I'm gonna start this out,
+searching at 1, again, completely
+arbitrary property of square roots
+that I can do that.
+
+523
+00:47:25,934 --> 00:47:29,854
+Now, how am I gonna compute
+Newton's method?
+
+524
+00:47:31,077 --> 00:47:33,109
+Well, Newton's method, I have it
+right here.
+
+525
+00:47:33,918 --> 00:47:39,590
+In fact, what I'm doing is
+looking for a fixed point
+of some procedure.
+
+526
+00:47:40,829 --> 00:47:47,118
+This procedure involves some
+complicated expressions in terms
+of other complicated things.
+
+527
+00:47:47,366 --> 00:47:48,717
+But I'm trying to find the
+fixed point of this.
+
+528
+00:47:48,870 --> 00:47:55,598
+I wanna find the values of y,
+which if I put y in here,
+I get the same value out here.
+
+529
+00:47:56,678 --> 00:47:58,821
+Up to some degree of accuracy.
+
+530
+00:47:59,934 --> 00:48:03,734
+Well I already have a fixed-point
+process around to do that.
+
+531
+00:48:05,166 --> 00:48:07,727
+So let's just define Newton's
+method over here.
+
+532
+00:48:17,430 --> 00:48:25,934
+A procedure which computes a function, and a guess, initial guess.
+
+533
+00:48:26,197 --> 00:48:28,398
+Now, I'm going to have to
+do something here.
+
+534
+00:48:28,669 --> 00:48:32,367
+I'm going to need a
+derivative of the function...
+
+535
+00:48:33,150 --> 00:48:39,301
+I'm gonna need a procedure
+which computes the derivative
+of the function, computed by the
+given procedure f.
+
+536
+00:48:41,110 --> 00:48:44,093
+I'm trying to be very carful about
+what I say.
+
+537
+00:48:44,366 --> 00:48:46,126
+I don't wanna mix up
+the word procedure and function,...
+
+538
+00:48:46,278 --> 00:48:54,006
+function's a mathematical word,
+it says a mapping from values to
+other values, set of ordered pairs,
+okay.
+
+539
+00:48:55,207 --> 00:48:58,286
+But I sometimes
+accidentially mix those up.
+
+540
+00:49:00,013 --> 00:49:02,007
+Procedures compute functions.
+
+541
+00:49:07,429 --> 00:49:13,703
+So I'm gonna define the
+derivative of f to be, by wishful
+thinking again, I don't know how
+I'm gonna do it.
+
+542
+00:49:14,526 --> 00:49:15,711
+Let's worry about that later.
+
+543
+00:49:15,746 --> 00:49:19,102
+... of F.
+
+544
+00:49:20,044 --> 00:49:26,068
+So if F is a procedure, which
+happens to be this one over
+here for a square root,
+
+545
+00:49:28,692 --> 00:49:32,581
+then DF will be the derivative
+of it. which is it also...
+
+546
+00:49:33,525 --> 00:49:35,572
+Well, the derivative of the
+function computed by
+that procedure.
+
+547
+00:49:35,773 --> 00:49:41,590
+DF will be a
+procedure that computes the
+derivative of the function,
+computed by the procedure F.
+
+548
+00:49:42,006 --> 00:49:44,765
+And then, given that, I will just
+go looking for a fixed point.
+
+549
+00:49:51,349 --> 00:49:53,285
+What is the fixed point I'm
+looking for?
+
+550
+00:49:53,320 --> 00:50:02,797
+It's the one for that procedure
+of one argument x, which I
+compute by subtracting x of the
+old... the y_n here.
+
+551
+00:50:04,886 --> 00:50:11,838
+The quotient of f of x, and df of x.
+
+552
+00:50:20,222 --> 00:50:22,254
+Starting out with the
+original guess.
+
+553
+00:50:28,254 --> 00:50:30,917
+That's all very simple.
+
+554
+00:50:32,237 --> 00:50:34,253
+Now I have one part left that
+I haven't written.
+
+555
+00:50:34,478 --> 00:50:37,173
+And I want you to see the process
+by which I write these things,
+
+556
+00:50:37,382 --> 00:50:38,669
+'cause this is really true.
+
+557
+00:50:39,893 --> 00:50:42,028
+I start out with some
+mathematical idea, perhaps.
+
+558
+00:50:43,741 --> 00:50:49,454
+By wishful thinking I assume that,
+by some magic, I can do
+something that I have a name for.
+
+559
+00:50:50,829 --> 00:50:52,357
+I'm not gonna worry about how
+I do it yet.
+
+560
+00:50:54,501 --> 00:50:59,629
+Now I go walking down here and
+say, well, by some magic, I'm
+somehow gonna figure how to
+do that.
+
+561
+00:51:00,701 --> 00:51:02,365
+But I'm gonna write my
+program anyway.
+
+562
+00:51:03,840 --> 00:51:06,372
+Wishful thinking - essential to
+good engineering.
+
+563
+00:51:07,525 --> 00:51:10,237
+And certainly essential to good
+computer science.
+
+564
+00:51:12,318 --> 00:51:13,478
+Okay, so anyway..
+
+565
+00:51:14,366 --> 00:51:16,742
+How many of you wish that
+your computer ran faster?
+
+566
+00:51:21,205 --> 00:51:24,526
+Well, the derivative isn't so
+bad either, sort of like
+average-damping.
+
+567
+00:51:29,110 --> 00:51:35,405
+Derivative is a procedure that
+takes a procedure that computes
+a function as its argument.
+
+568
+00:51:36,822 --> 00:51:43,270
+And it produces a procedure
+that computes a function
+which needs one argument x.
+
+569
+00:51:43,716 --> 00:51:45,093
+Well, we all know this defintion.
+
+570
+00:51:45,685 --> 00:51:50,110
+It's f of x plus delta x minus
+f of x over delta x, right?
+For some small delta x.
+
+571
+00:51:50,461 --> 00:52:01,805
+So that's the quotient of the
+difference of f of the sum of
+x and dx, ...
+
+572
+00:52:04,261 --> 00:52:10,525
+... minus f point x, divided by dx.
+
+573
+00:52:17,390 --> 00:52:21,933
+I think the thing was lining up
+correctly, when I balanced
+the parentheses.
+
+574
+00:52:24,542 --> 00:52:27,557
+Now I want you to look at this.
+Just look.
+
+575
+00:52:31,101 --> 00:52:35,509
+I suppose I haven't told you what
+dx is, somewhere in the world I'm
+gonna have to write it down.
+
+576
+00:52:44,758 --> 00:52:46,693
+Well something like that.
+I'm not interested.
+
+577
+00:52:47,267 --> 00:53:00,762
+This is a procedure which takes
+a procedure and produces an
+approximation.. , a procedure that
+computes an approximation of the
+derivative of the function
+computed by the procedure given.
+
+578
+00:53:00,861 --> 00:53:03,109
+By the standard methods that
+you all know and love.
+
+579
+00:53:03,144 --> 00:53:10,598
+Now, it may not be the case that
+doing this operation is such a
+good way of approximating
+a derivative.
+
+580
+00:53:11,445 --> 00:53:15,413
+The numerical analysists here
+should jump on me and say:
+"Don't do that!"
+
+581
+00:53:16,037 --> 00:53:18,901
+"Computing derivatives produces
+noisy answers!", which is true.
+
+582
+00:53:19,678 --> 00:53:23,750
+However this again is for the
+sake of understanding.
+
+583
+00:53:24,565 --> 00:53:25,949
+Look at what we've got.
+
+584
+00:53:26,430 --> 00:53:29,790
+We've started out with what
+is apparently a mathematically
+complex thing.
+
+585
+00:53:30,302 --> 00:53:43,166
+And in a few blackboards full,
+we've managed to decompose
+the problem of computing square
+roots by the way you were
+taught in your college
+calculus class, Newton's method.
+
+586
+00:53:43,501 --> 00:53:44,974
+So that it can be understood.
+
+587
+00:53:45,653 --> 00:53:46,701
+It's clear.
+
+588
+00:53:47,605 --> 00:53:49,693
+Let's look at the structure of
+what it is we've got.
+
+589
+00:53:51,382 --> 00:53:52,269
+Let's look at this slide.
+
+590
+00:53:54,702 --> 00:54:04,134
+This is a diagram of the machine
+described by the program on the
+blackboard.
+
+591
+00:54:05,622 --> 00:54:07,061
+There's a machine described here.
+
+592
+00:54:08,493 --> 00:54:09,620
+And what have I got?
+
+593
+00:54:10,357 --> 00:54:19,222
+Over here is the Newton's
+method, Newton's method
+function f, that we have on
+the left-most blackboard.
+
+594
+00:54:20,484 --> 00:54:27,421
+It's a thing which takes an
+argument called y and puts out
+the difference between x and
+the square of y.
+
+595
+00:54:29,700 --> 00:54:35,134
+Where x is some sort of free
+variable that comes in from
+the outside, ...
+
+596
+00:54:35,430 --> 00:54:36,390
+... by some magic.
+
+597
+00:54:37,518 --> 00:54:40,269
+So the square root routine
+picks up an x, ...
+
+598
+00:54:40,813 --> 00:54:48,502
+... picks up an x, and builds this
+procedure, which has the x rolled
+up in it, by substitution.
+
+599
+00:54:49,677 --> 00:54:57,687
+Now, this procedure in the
+cloud is fed in as the f, okay.
+
+600
+00:54:58,110 --> 00:55:01,757
+Into the Newton's method,
+which is here, this box.
+
+601
+00:55:04,054 --> 00:55:14,381
+The f is fanned out, part of it
+goes into something else, and
+the other part of it goes into
+a derivative process into
+something else, ...
+
+602
+00:55:15,062 --> 00:55:25,086
+... to produce a procedure, which
+computes the function, which is
+the iteration function of
+Newton's method when we use a
+fixed-point method.
+
+603
+00:55:27,172 --> 00:55:32,485
+So this, this procedure, which
+contains in it, by substitution...
+
+604
+00:55:32,902 --> 00:55:38,382
+Remember, Newton's method
+over here, Newton's method
+builds this procedure,
+
+605
+00:55:39,509 --> 00:55:43,190
+And Newton's method has in it
+defined f and df.
+
+606
+00:55:44,461 --> 00:55:47,765
+So those are captured over here,
+f and df.
+
+607
+00:55:48,085 --> 00:55:57,174
+Starting with this procedure, I
+can now feed this to the fixed
+point process, with an initial
+guess coming out from the
+outside from square root,
+
+608
+00:55:58,349 --> 00:56:00,158
+to produce the square root of x.
+
+609
+00:56:02,668 --> 00:56:09,454
+So what we've built is a very
+powerful engine, which allows
+us to make nice things like this.
+
+610
+00:56:11,181 --> 00:56:22,622
+Now I want to end this with
+basically an idea of Chris
+Strachey, one of the grandfathers
+of computer science.
+
+611
+00:56:23,190 --> 00:56:29,821
+He's a logician, who lived in the...
+I suppose about 10 years ago or
+15 years ago he died...
+
+612
+00:56:30,158 --> 00:56:34,469
+I don't remember exactly when.
+He's one of the inventors of
+something called
+denontational semantics.
+
+613
+00:56:34,645 --> 00:56:42,742
+He was a great advocate of
+making procedures, or functions,
+first-class citizens
+in a programming language.
+
+614
+00:56:43,782 --> 00:56:48,837
+So here's the rights and privileges
+of first-class citizens in a
+programming language.
+
+615
+00:56:50,358 --> 00:56:55,687
+It allows you to make any
+abstraction you like, if you
+have functions as
+first-class citizens.
+
+616
+00:56:55,894 --> 00:57:00,190
+They must be, the first-class
+citizens must be able to be
+named by variables.
+
+617
+00:57:01,701 --> 00:57:03,949
+And you're seeing me doing that
+all the time.
+
+618
+00:57:04,214 --> 00:57:08,646
+Here is a nice variable which
+names a procedure which
+computes something.
+
+619
+00:57:10,574 --> 00:57:16,309
+There is a... they have to be
+passed as arguments to
+procedures.
+Well, you've certainly seen that.
+
+620
+00:57:17,909 --> 00:57:21,349
+We have to be able to return
+them, as values from procedures.
+
+621
+00:57:23,189 --> 00:57:24,613
+And I suppose we've seen that.
+
+622
+00:57:25,022 --> 00:57:28,334
+We haven't yet seen anything
+about data structures.
+We will soon.
+
+623
+00:57:29,173 --> 00:57:36,198
+But it's also the case, that in
+order to have a first-class citizen
+in a programming language, the
+object has to be allowed to be
+part of a data structure.
+
+624
+00:57:36,958 --> 00:57:38,149
+We're gonna see that soon.
+
+625
+00:57:38,949 --> 00:57:50,317
+So I just wanna close with this,
+and say, this, having things like
+procedures as first-class data
+structures, first-class data
+allows one to make powerful
+abstractions.
+
+626
+00:57:50,542 --> 00:57:53,949
+Which encode general methods,
+like Newton's method in a very
+clear way.
+
+627
+00:57:54,590 --> 00:57:55,501
+Are there any questions?
+
+628
+00:57:57,030 --> 00:58:02,389
+Yes?
+
+- Could you put DERIV instead of
+DF directly in FIXED-POINT.
+
+- Oh sure.
+
+629
+00:58:03,078 --> 00:58:10,045
+Yes, I could have put DERIV of F
+right here, no question. Mhm.
+
+630
+00:58:11,405 --> 00:58:17,396
+Anytime you see something
+defined you can put the
+thing, that the defintion is, there.
+
+631
+00:58:18,525 --> 00:58:19,846
+And you should get
+the same result.
+
+632
+00:58:20,709 --> 00:58:25,621
+In fact, what that would look
+like, it's interesting ...
+
+- Lambda, you could put the
+lambda expression in there.
+
+633
+00:58:25,846 --> 00:58:28,501
+- I could also put the,
+I could also put DERIV of F here.
+
+634
+00:58:30,158 --> 00:58:37,029
+It would look interesting.
+Because we open-paren,
+open-paren deriv of f
+close-paren on x.
+
+635
+00:58:38,060 --> 00:58:41,990
+now that would have the bad property of computing the derivative many times.
+
+636
+00:58:42,445 --> 00:58:45,502
+'cause every time I would run
+this procedure I would compute
+the derivative again.
+
+637
+00:58:47,645 --> 00:58:52,197
+- (Right.)
+
+- However, the two open-parens
+here, both would be meaningful.
+
+638
+00:58:52,398 --> 00:58:55,421
+I want you to understand that
+syntactically, that thats's a
+sensible thing.
+
+639
+00:58:55,829 --> 00:58:59,484
+Whereas if were to rewrite this
+program, and I should do it right
+here, just so you see.
+
+640
+00:58:59,699 --> 00:59:01,065
+'cause that's a good question.
+
+641
+00:59:10,070 --> 00:59:29,310
+... of F and GUESS, to be
+FIXED-POINT of that
+procedure of one argument X,
+which subtracts from X ...
+
+642
+00:59:30,207 --> 00:59:58,846
+... the quotient of F applied to X
+and the DERIV of F applied to X.
+Ahm, ... GUESS. Okay?
+
+643
+00:59:59,719 --> 01:00:05,142
+This is a
+perfect little legitimate program,
+because what I have here,
+remember the evaluation rule.
+
+644
+01:00:05,552 --> 01:00:11,168
+The evaluation rule is:
+Evaluate all of the parts of the
+combination, the operator,
+and the operands.
+
+645
+01:00:11,695 --> 01:00:14,751
+This is the operator of
+this combination.
+
+646
+01:00:16,215 --> 01:00:22,263
+Evaluating
+this operator will of course
+produce the derivative of F.
+
+647
+01:00:28,104 --> 01:00:41,087
+- .. one step further you could put
+the lambda expression in that ...
+
+- Oh of course. Anytime I take
+something which is defined, I
+could put the thing it's defined
+to be, in the place where
+the thing defined is.
+
+648
+01:00:41,949 --> 01:00:56,279
+I can't remember which is
+definiens and definiendum, ah,
+when I'm trying to figure out
+how to give a lecture about this in
+freshman class I use such words,
+and tell everybody it's fun to tell
+their friends.
+
+649
+01:00:58,597 --> 01:01:00,701
+Okay, I think that's it.
+
+650
+01:01:04,001 --> 01:01:05,000
+GNU Free Documentation License
+
+Version 1.3, 3 November 2008
+
+Copyright © 2000, 2001, 2002, 2007, 2008 Free Software Foundation, Inc. <http://fsf.org/>
+
+Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.
+0. PREAMBLE
+
+The purpose of this License is to make a manual, textbook, or other functional and useful document "free" in the sense of freedom: to assure everyone the effective freedom to copy and redistribute it, with or without modifying it, either commercially or noncommercially. Secondarily, this License preserves for the author and publisher a way to get credit for their work, while not being considered responsible for modifications made by others.
+
+This License is a kind of "copyleft", which means that derivative works of the document must themselves be free in the same sense. It complements the GNU General Public License, which is a copyleft license designed for free software.
+
+We have designed this License in order to use it for manuals for free software, because free software needs free documentation: a free program should come with manuals providing the same freedoms that the software does. But this License is not limited to software manuals; it can be used for any textual work, regardless of subject matter or whether it is published as a printed book. We recommend this License principally for works whose purpose is instruction or reference.
+1. APPLICABILITY AND DEFINITIONS
+
+This License applies to any manual or other work, in any medium, that contains a notice placed by the copyright holder saying it can be distributed under the terms of this License. Such a notice grants a world-wide, royalty-free license, unlimited in duration, to use that work under the conditions stated herein. The "Document", below, refers to any such manual or work. Any member of the public is a licensee, and is addressed as "you". You accept the license if you copy, modify or distribute the work in a way requiring permission under copyright law.
+
+A "Modified Version" of the Document means any work containing the Document or a portion of it, either copied verbatim, or with modifications and/or translated into another language.
+
+A "Secondary Section" is a named appendix or a front-matter section of the Document that deals exclusively with the relationship of the publishers or authors of the Document to the Document's overall subject (or to related matters) and contains nothing that could fall directly within that overall subject. (Thus, if the Document is in part a textbook of mathematics, a Secondary Section may not explain any mathematics.) The relationship could be a matter of historical connection with the subject or with related matters, or of legal, commercial, philosophical, ethical or political position regarding them.
+
+The "Invariant Sections" are certain Secondary Sections whose titles are designated, as being those of Invariant Sections, in the notice that says that the Document is released under this License. If a section does not fit the above definition of Secondary then it is not allowed to be designated as Invariant. The Document may contain zero Invariant Sections. If the Document does not identify any Invariant Sections then there are none.
+
+The "Cover Texts" are certain short passages of text that are listed, as Front-Cover Texts or Back-Cover Texts, in the notice that says that the Document is released under this License. A Front-Cover Text may be at most 5 words, and a Back-Cover Text may be at most 25 words.
+
+A "Transparent" copy of the Document means a machine-readable copy, represented in a format whose specification is available to the general public, that is suitable for revising the document straightforwardly with generic text editors or (for images composed of pixels) generic paint programs or (for drawings) some widely available drawing editor, and that is suitable for input to text formatters or for automatic translation to a variety of formats suitable for input to text formatters. A copy made in an otherwise Transparent file format whose markup, or absence of markup, has been arranged to thwart or discourage subsequent modification by readers is not Transparent. An image format is not Transparent if used for any substantial amount of text. A copy that is not "Transparent" is called "Opaque".
+
+Examples of suitable formats for Transparent copies include plain ASCII without markup, Texinfo input format, LaTeX input format, SGML or XML using a publicly available DTD, and standard-conforming simple HTML, PostScript or PDF designed for human modification. Examples of transparent image formats include PNG, XCF and JPG. Opaque formats include proprietary formats that can be read and edited only by proprietary word processors, SGML or XML for which the DTD and/or processing tools are not generally available, and the machine-generated HTML, PostScript or PDF produced by some word processors for output purposes only.
+
+The "Title Page" means, for a printed book, the title page itself, plus such following pages as are needed to hold, legibly, the material this License requires to appear in the title page. For works in formats which do not have any title page as such, "Title Page" means the text near the most prominent appearance of the work's title, preceding the beginning of the body of the text.
+
+The "publisher" means any person or entity that distributes copies of the Document to the public.
+
+A section "Entitled XYZ" means a named subunit of the Document whose title either is precisely XYZ or contains XYZ in parentheses following text that translates XYZ in another language. (Here XYZ stands for a specific section name mentioned below, such as "Acknowledgements", "Dedications", "Endorsements", or "History".) To "Preserve the Title" of such a section when you modify the Document means that it remains a section "Entitled XYZ" according to this definition.
+
+The Document may include Warranty Disclaimers next to the notice which states that this License applies to the Document. These Warranty Disclaimers are considered to be included by reference in this License, but only as regards disclaiming warranties: any other implication that these Warranty Disclaimers may have is void and has no effect on the meaning of this License.
+2. VERBATIM COPYING
+
+You may copy and distribute the Document in any medium, either commercially or noncommercially, provided that this License, the copyright notices, and the license notice saying this License applies to the Document are reproduced in all copies, and that you add no other conditions whatsoever to those of this License. You may not use technical measures to obstruct or control the reading or further copying of the copies you make or distribute. However, you may accept compensation in exchange for copies. If you distribute a large enough number of copies you must also follow the conditions in section 3.
+
+You may also lend copies, under the same conditions stated above, and you may publicly display copies.
+3. COPYING IN QUANTITY
+
+If you publish printed copies (or copies in media that commonly have printed covers) of the Document, numbering more than 100, and the Document's license notice requires Cover Texts, you must enclose the copies in covers that carry, clearly and legibly, all these Cover Texts: Front-Cover Texts on the front cover, and Back-Cover Texts on the back cover. Both covers must also clearly and legibly identify you as the publisher of these copies. The front cover must present the full title with all words of the title equally prominent and visible. You may add other material on the covers in addition. Copying with changes limited to the covers, as long as they preserve the title of the Document and satisfy these conditions, can be treated as verbatim copying in other respects.
+
+If the required texts for either cover are too voluminous to fit legibly, you should put the first ones listed (as many as fit reasonably) on the actual cover, and continue the rest onto adjacent pages.
+
+If you publish or distribute Opaque copies of the Document numbering more than 100, you must either include a machine-readable Transparent copy along with each Opaque copy, or state in or with each Opaque copy a computer-network location from which the general network-using public has access to download using public-standard network protocols a complete Transparent copy of the Document, free of added material. If you use the latter option, you must take reasonably prudent steps, when you begin distribution of Opaque copies in quantity, to ensure that this Transparent copy will remain thus accessible at the stated location until at least one year after the last time you distribute an Opaque copy (directly or through your agents or retailers) of that edition to the public.
+
+It is requested, but not required, that you contact the authors of the Document well before redistributing any large number of copies, to give them a chance to provide you with an updated version of the Document.
+4. MODIFICATIONS
+
+You may copy and distribute a Modified Version of the Document under the conditions of sections 2 and 3 above, provided that you release the Modified Version under precisely this License, with the Modified Version filling the role of the Document, thus licensing distribution and modification of the Modified Version to whoever possesses a copy of it. In addition, you must do these things in the Modified Version:
+
+    * A. Use in the Title Page (and on the covers, if any) a title distinct from that of the Document, and from those of previous versions (which should, if there were any, be listed in the History section of the Document). You may use the same title as a previous version if the original publisher of that version gives permission.
+    * B. List on the Title Page, as authors, one or more persons or entities responsible for authorship of the modifications in the Modified Version, together with at least five of the principal authors of the Document (all of its principal authors, if it has fewer than five), unless they release you from this requirement.
+    * C. State on the Title page the name of the publisher of the Modified Version, as the publisher.
+    * D. Preserve all the copyright notices of the Document.
+    * E. Add an appropriate copyright notice for your modifications adjacent to the other copyright notices.
+    * F. Include, immediately after the copyright notices, a license notice giving the public permission to use the Modified Version under the terms of this License, in the form shown in the Addendum below.
+    * G. Preserve in that license notice the full lists of Invariant Sections and required Cover Texts given in the Document's license notice.
+    * H. Include an unaltered copy of this License.
+    * I. Preserve the section Entitled "History", Preserve its Title, and add to it an item stating at least the title, year, new authors, and publisher of the Modified Version as given on the Title Page. If there is no section Entitled "History" in the Document, create one stating the title, year, authors, and publisher of the Document as given on its Title Page, then add an item describing the Modified Version as stated in the previous sentence.
+    * J. Preserve the network location, if any, given in the Document for public access to a Transparent copy of the Document, and likewise the network locations given in the Document for previous versions it was based on. These may be placed in the "History" section. You may omit a network location for a work that was published at least four years before the Document itself, or if the original publisher of the version it refers to gives permission.
+    * K. For any section Entitled "Acknowledgements" or "Dedications", Preserve the Title of the section, and preserve in the section all the substance and tone of each of the contributor acknowledgements and/or dedications given therein.
+    * L. Preserve all the Invariant Sections of the Document, unaltered in their text and in their titles. Section numbers or the equivalent are not considered part of the section titles.
+    * M. Delete any section Entitled "Endorsements". Such a section may not be included in the Modified Version.
+    * N. Do not retitle any existing section to be Entitled "Endorsements" or to conflict in title with any Invariant Section.
+    * O. Preserve any Warranty Disclaimers.
+
+If the Modified Version includes new front-matter sections or appendices that qualify as Secondary Sections and contain no material copied from the Document, you may at your option designate some or all of these sections as invariant. To do this, add their titles to the list of Invariant Sections in the Modified Version's license notice. These titles must be distinct from any other section titles.
+
+You may add a section Entitled "Endorsements", provided it contains nothing but endorsements of your Modified Version by various parties—for example, statements of peer review or that the text has been approved by an organization as the authoritative definition of a standard.
+
+You may add a passage of up to five words as a Front-Cover Text, and a passage of up to 25 words as a Back-Cover Text, to the end of the list of Cover Texts in the Modified Version. Only one passage of Front-Cover Text and one of Back-Cover Text may be added by (or through arrangements made by) any one entity. If the Document already includes a cover text for the same cover, previously added by you or by arrangement made by the same entity you are acting on behalf of, you may not add another; but you may replace the old one, on explicit permission from the previous publisher that added the old one.
+
+The author(s) and publisher(s) of the Document do not by this License give permission to use their names for publicity for or to assert or imply endorsement of any Modified Version.
+5. COMBINING DOCUMENTS
+
+You may combine the Document with other documents released under this License, under the terms defined in section 4 above for modified versions, provided that you include in the combination all of the Invariant Sections of all of the original documents, unmodified, and list them all as Invariant Sections of your combined work in its license notice, and that you preserve all their Warranty Disclaimers.
+
+The combined work need only contain one copy of this License, and multiple identical Invariant Sections may be replaced with a single copy. If there are multiple Invariant Sections with the same name but different contents, make the title of each such section unique by adding at the end of it, in parentheses, the name of the original author or publisher of that section if known, or else a unique number. Make the same adjustment to the section titles in the list of Invariant Sections in the license notice of the combined work.
+
+In the combination, you must combine any sections Entitled "History" in the various original documents, forming one section Entitled "History"; likewise combine any sections Entitled "Acknowledgements", and any sections Entitled "Dedications". You must delete all sections Entitled "Endorsements".
+6. COLLECTIONS OF DOCUMENTS
+
+You may make a collection consisting of the Document and other documents released under this License, and replace the individual copies of this License in the various documents with a single copy that is included in the collection, provided that you follow the rules of this License for verbatim copying of each of the documents in all other respects.
+
+You may extract a single document from such a collection, and distribute it individually under this License, provided you insert a copy of this License into the extracted document, and follow this License in all other respects regarding verbatim copying of that document.
+7. AGGREGATION WITH INDEPENDENT WORKS
+
+A compilation of the Document or its derivatives with other separate and independent documents or works, in or on a volume of a storage or distribution medium, is called an "aggregate" if the copyright resulting from the compilation is not used to limit the legal rights of the compilation's users beyond what the individual works permit. When the Document is included in an aggregate, this License does not apply to the other works in the aggregate which are not themselves derivative works of the Document.
+
+If the Cover Text requirement of section 3 is applicable to these copies of the Document, then if the Document is less than one half of the entire aggregate, the Document's Cover Texts may be placed on covers that bracket the Document within the aggregate, or the electronic equivalent of covers if the Document is in electronic form. Otherwise they must appear on printed covers that bracket the whole aggregate.
+8. TRANSLATION
+
+Translation is considered a kind of modification, so you may distribute translations of the Document under the terms of section 4. Replacing Invariant Sections with translations requires special permission from their copyright holders, but you may include translations of some or all Invariant Sections in addition to the original versions of these Invariant Sections. You may include a translation of this License, and all the license notices in the Document, and any Warranty Disclaimers, provided that you also include the original English version of this License and the original versions of those notices and disclaimers. In case of a disagreement between the translation and the original version of this License or a notice or disclaimer, the original version will prevail.
+
+If a section in the Document is Entitled "Acknowledgements", "Dedications", or "History", the requirement (section 4) to Preserve its Title (section 1) will typically require changing the actual title.
+9. TERMINATION
+
+You may not copy, modify, sublicense, or distribute the Document except as expressly provided under this License. Any attempt otherwise to copy, modify, sublicense, or distribute it is void, and will automatically terminate your rights under this License.
+
+However, if you cease all violation of this License, then your license from a particular copyright holder is reinstated (a) provisionally, unless and until the copyright holder explicitly and finally terminates your license, and (b) permanently, if the copyright holder fails to notify you of the violation by some reasonable means prior to 60 days after the cessation.
+
+Moreover, your license from a particular copyright holder is reinstated permanently if the copyright holder notifies you of the violation by some reasonable means, this is the first time you have received notice of violation of this License (for any work) from that copyright holder, and you cure the violation prior to 30 days after your receipt of the notice.
+
+Termination of your rights under this section does not terminate the licenses of parties who have received copies or rights from you under this License. If your rights have been terminated and not permanently reinstated, receipt of a copy of some or all of the same material does not give you any rights to use it.
+10. FUTURE REVISIONS OF THIS LICENSE
+
+The Free Software Foundation may publish new, revised versions of the GNU Free Documentation License from time to time. Such new versions will be similar in spirit to the present version, but may differ in detail to address new problems or concerns. See http://www.gnu.org/copyleft/.
+
+Each version of the License is given a distinguishing version number. If the Document specifies that a particular numbered version of this License "or any later version" applies to it, you have the option of following the terms and conditions either of that specified version or of any later version that has been published (not as a draft) by the Free Software Foundation. If the Document does not specify a version number of this License, you may choose any version ever published (not as a draft) by the Free Software Foundation. If the Document specifies that a proxy can decide which future versions of this License can be used, that proxy's public statement of acceptance of a version permanently authorizes you to choose that version for the Document.
+11. RELICENSING
+
+"Massive Multiauthor Collaboration Site" (or "MMC Site") means any World Wide Web server that publishes copyrightable works and also provides prominent facilities for anybody to edit those works. A public wiki that anybody can edit is an example of such a server. A "Massive Multiauthor Collaboration" (or "MMC") contained in the site means any set of copyrightable works thus published on the MMC site.
+
+"CC-BY-SA" means the Creative Commons Attribution-Share Alike 3.0 license published by Creative Commons Corporation, a not-for-profit corporation with a principal place of business in San Francisco, California, as well as future copyleft versions of that license published by that same organization.
+
+"Incorporate" means to publish or republish a Document, in whole or in part, as part of another Document.
+
+An MMC is "eligible for relicensing" if it is licensed under this License, and if all works that were first published under this License somewhere other than this MMC, and subsequently incorporated in whole or in part into the MMC, (1) had no cover texts or invariant sections, and (2) were thus incorporated prior to November 1, 2008.
+
+The operator of an MMC Site may republish an MMC contained in the site under CC-BY-SA on the same site at any time before August 1, 2009, provided the MMC is eligible for relicensing.
+
